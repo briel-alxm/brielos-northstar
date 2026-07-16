@@ -54,3 +54,5 @@ server.log
 /skills/
 # local sqlite data — do not commit
 db/*.db
+
+prisma/db/
