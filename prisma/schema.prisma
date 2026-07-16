@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Manifesto {
+  id             String   @id @default(cuid())
+  goal           String   @default("")
+  purpose        String   @default("")
+  targetDate     String   @default("")
+  commitmentLevel String  @default("Absolute")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Milestone {
+  id          String   @id @default(cuid())
+  order       Int      @default(0)
+  title       String
+  description String   @default("")
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DailyPulse {
+  id        String   @id @default(cuid())
+  date      String   @unique
+  focus     String   @default("")
+  routines  String   @default("[]")
+  friction  String   @default("")
+  committed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
